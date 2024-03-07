@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`available Go language configurations matches snapshot 1`] = `
+Array [
+  Object {
+    "chapter": -14,
+    "displayName": "Go §1",
+    "mainLanguage": "Go",
+    "supports": Object {
+      "repl": false,
+    },
+    "variant": "explicit-control",
+  },
+]
+`;
+
 exports[`available Python language configurations matches snapshot 1`] = `
 Array [
   Object {
