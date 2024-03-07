@@ -217,8 +217,6 @@ const goSubLanguages: Array<Pick<SALanguage, 'chapter' | 'variant' | 'displayNam
   { chapter: Chapter.GO_1, variant: Variant.EXPLICIT_CONTROL, displayName: 'Go \xa71' }
 ];
 
-console.log(Chapter);
-
 export const goLanguages: SALanguage[] = goSubLanguages.map(sublang => {
   return { ...sublang, mainLanguage: SupportedLanguage.GO, supports: { repl: false } };
 });
