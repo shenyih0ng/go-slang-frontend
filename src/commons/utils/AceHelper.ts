@@ -50,6 +50,8 @@ export const getModeString = (chapter: Chapter, variant: Variant, library: strin
     case Chapter.SCHEME_4:
     case Chapter.FULL_SCHEME:
       return 'scheme';
+    case Chapter.GO_1:
+      return 'golang';
     default:
       return `source${chapter}${variant}${library}`;
   }
