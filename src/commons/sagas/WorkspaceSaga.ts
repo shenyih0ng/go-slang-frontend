@@ -1044,7 +1044,7 @@ export function* evalCode(
   workspaceLocation: WorkspaceLocation,
   actionType: string,
   storyEnv?: string,
-  heapSize?: number,
+  heapSize?: number
 ): SagaIterator {
   context.runtime.debuggerOn =
     (actionType === EVAL_EDITOR || actionType === DEBUG_RESUME) && context.chapter > 2;

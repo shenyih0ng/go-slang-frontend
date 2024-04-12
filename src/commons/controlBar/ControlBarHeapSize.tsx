@@ -22,7 +22,7 @@ export const ControlBarHeapSize: React.FC<ControlBarHeapSizeProps> = props => {
         max={Math.pow(2, 31)} // 2.14GB
         value={props.heapSize}
         minorStepSize={null}
-        intent='primary'
+        intent="primary"
         onValueChange={props.handleChangeHeapSize}
       />
     </Tooltip>
