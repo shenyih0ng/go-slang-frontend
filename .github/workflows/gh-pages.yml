@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install dependencies (apt)
+        run: |
+          sudo apt-get update && \
+          sudo apt-get install -y --no-install-recommends \
+          libxi-dev libgl1-mesa-dev
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+      - id: get-time
+        run: echo "time=$(date -Iseconds)" >> $GITHUB_OUTPUT
+      - name: yarn install and build
+        run: |
+          yarn install --frozen-lockfile
+          yarn run build
+      - name: Remove sourcemaps
+        working-directory: build
+        run: |
+          find -name '*.map' -print -delete
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./build
+          publish_branch: master
+          force_orphan: true
