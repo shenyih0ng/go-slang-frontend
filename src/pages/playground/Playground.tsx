@@ -26,6 +26,7 @@ import {
   setEditorSessionId,
   setSharedbConnected
 } from 'src/commons/collabEditing/CollabEditingActions';
+import { ControlBarHeapSize } from 'src/commons/controlBar/ControlBarHeapSize';
 import makeCseMachineTabFrom from 'src/commons/sideContent/content/SideContentCseMachine';
 import makeDataVisualizerTabFrom from 'src/commons/sideContent/content/SideContentDataVisualizer';
 import makeHtmlDisplayTabFrom from 'src/commons/sideContent/content/SideContentHtmlDisplay';
@@ -43,6 +44,7 @@ import {
   browseReplHistoryDown,
   browseReplHistoryUp,
   changeExecTime,
+  changeHeapSize,
   changeStepLimit,
   chapterSelect,
   clearReplOutput,
@@ -246,6 +248,7 @@ const Playground: React.FC<PlaygroundProps> = props => {
     editorTabs,
     editorSessionId,
     execTime,
+    heapSize,
     stepLimit,
     isEditorAutorun,
     isRunning,
@@ -273,6 +276,7 @@ const Playground: React.FC<PlaygroundProps> = props => {
   const dispatch = useDispatch();
   const {
     handleChangeExecTime,
+    handleChangeHeapSize,
     handleChapterSelect,
     handleEditorValueChange,
     handleSetEditorBreakpoints,
@@ -283,6 +287,8 @@ const Playground: React.FC<PlaygroundProps> = props => {
     return {
       handleChangeExecTime: (execTime: number) =>
         dispatch(changeExecTime(execTime, workspaceLocation)),
+      handleChangeHeapSize: (heapSize: number) =>
+        dispatch(changeHeapSize(heapSize, workspaceLocation)),
       handleChapterSelect: (chapter: Chapter, variant: Variant) =>
         dispatch(chapterSelect(chapter, variant, workspaceLocation)),
       handleEditorValueChange: (editorTabIndex: number, newEditorValue: string) =>
@@ -636,6 +642,17 @@ const Playground: React.FC<PlaygroundProps> = props => {
     [execTime, handleChangeExecTime]
   );
 
+  const heapSizeButton = useMemo(
+    () => (
+      <ControlBarHeapSize
+        heapSize={heapSize}
+        handleChangeHeapSize={handleChangeHeapSize}
+        key="heap_size"
+      />
+    ),
+    [heapSize, handleChangeHeapSize]
+  );
+
   const stepperStepLimit = useMemo(
     () => (
       <ControlBarStepLimit
@@ -986,10 +1003,10 @@ const Playground: React.FC<PlaygroundProps> = props => {
         autorunButtons,
         languageConfig.chapter === Chapter.FULL_JS ? null : shareButton,
         chapterSelectButton,
+        // NOTE: only enable heap size configuration for Go
+        languageConfig.chapter === Chapter.GO_1 ? heapSizeButton : null,
         isSicpEditor ? null : sessionButtons,
         languageConfig.supports.multiFile ? toggleFolderModeButton : null,
-        persistenceButtons,
-        githubButtons,
         usingRemoteExecution || !isSourceLanguage(languageConfig.chapter)
           ? null
           : usingSubst || usingCse
