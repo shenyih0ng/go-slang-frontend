@@ -770,6 +770,7 @@ export function* evalEditor(
     activeEditorTabIndex,
     editorTabs,
     execTime,
+    heapSize,
     isFolderModeEnabled,
     fileSystem,
     remoteExecutionSession
@@ -777,6 +778,7 @@ export function* evalEditor(
     string,
     number | null,
     EditorTabState[],
+    number,
     number,
     boolean,
     FSModule,
@@ -786,6 +788,7 @@ export function* evalEditor(
     state.workspaces[workspaceLocation].activeEditorTabIndex,
     state.workspaces[workspaceLocation].editorTabs,
     state.workspaces[workspaceLocation].execTime,
+    state.workspaces[workspaceLocation].heapSize,
     state.workspaces[workspaceLocation].isFolderModeEnabled,
     state.fileSystem.inBrowserFileSystem,
     state.session.remoteExecutionSession
@@ -860,7 +863,9 @@ export function* evalEditor(
       context,
       execTime,
       workspaceLocation,
-      EVAL_EDITOR
+      EVAL_EDITOR,
+      undefined,
+      heapSize
     );
   }
 }
@@ -1038,7 +1043,8 @@ export function* evalCode(
   execTime: number,
   workspaceLocation: WorkspaceLocation,
   actionType: string,
-  storyEnv?: string
+  storyEnv?: string,
+  heapSize?: number,
 ): SagaIterator {
   context.runtime.debuggerOn =
     (actionType === EVAL_EDITOR || actionType === DEBUG_RESUME) && context.chapter > 2;
@@ -1179,6 +1185,7 @@ export function* evalCode(
             {
               scheduler: 'preemptive',
               originalMaxExecTime: execTime,
+              heapSize: heapSize,
               stepLimit: stepLimit,
               throwInfiniteLoops: true,
               useSubst: substActiveAndCorrectChapter,
