@@ -381,6 +381,7 @@ export const createDefaultWorkspace = (workspaceLocation: WorkspaceLocation): Wo
   editorTestcases: [],
   externalLibrary: ExternalLibraryName.NONE,
   execTime: 1000,
+  heapSize: 32768, // 32KB
   output: [],
   replHistory: {
     browseIndex: null,

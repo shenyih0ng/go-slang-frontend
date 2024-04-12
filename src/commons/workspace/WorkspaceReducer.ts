@@ -38,6 +38,7 @@ import {
   browseReplHistoryDown,
   browseReplHistoryUp,
   changeExecTime,
+  changeHeapSize,
   changeStepLimit,
   clearReplInput,
   clearReplOutput,
@@ -200,6 +201,10 @@ const newWorkspaceReducer = createReducer(defaultWorkspaceManager, builder => {
     .addCase(changeExecTime, (state, action) => {
       const workspaceLocation = getWorkspaceLocation(action);
       state[workspaceLocation].execTime = action.payload.execTime;
+    })
+    .addCase(changeHeapSize, (state, action) => {
+      const workspaceLocation = getWorkspaceLocation(action);
+      state[workspaceLocation].heapSize = action.payload.heapSize;
     })
     .addCase(changeStepLimit, (state, action) => {
       const workspaceLocation = getWorkspaceLocation(action);

@@ -14,6 +14,7 @@ export const BEGIN_CLEAR_CONTEXT = 'BEGIN_CLEAR_CONTEXT';
 export const BROWSE_REPL_HISTORY_DOWN = 'BROWSE_REPL_HISTORY_DOWN';
 export const BROWSE_REPL_HISTORY_UP = 'BROWSE_REPL_HISTORY_UP';
 export const CHANGE_EXEC_TIME = 'CHANGE_EXEC_TIME';
+export const CHANGE_HEAP_SIZE = 'CHANGE_HEAP_SIZE';
 export const CHANGE_EXTERNAL_LIBRARY = 'CHANGE_EXTERNAL_LIBRARY';
 export const CHANGE_STEP_LIMIT = 'CHANGE_STEP_LIMIT';
 export const CHAPTER_SELECT = 'CHAPTER_SELECT';
@@ -130,6 +131,7 @@ export type WorkspaceState = {
   readonly editorSessionId: string;
   readonly editorTestcases: Testcase[];
   readonly execTime: number;
+  readonly heapSize: number;
   readonly isRunning: boolean;
   readonly isDebugging: boolean;
   readonly enableDebugging: boolean;
