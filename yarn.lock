@@ -8310,9 +8310,9 @@ js-sdsl@4.3.0, js-sdsl@^4.1.4:
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.3.0.tgz#aeefe32a451f7af88425b11fdb5f58c90ae1d711"
   integrity sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==
 
-js-slang@shenyih0ng/go-slang#v1.0.0:
+js-slang@shenyih0ng/go-slang#v1.1.0:
   version "1.0.46"
-  resolved "https://codeload.github.com/shenyih0ng/go-slang/tar.gz/4317c6bddb98847ef6c59ccc85555f75c8dfd1ab"
+  resolved "https://codeload.github.com/shenyih0ng/go-slang/tar.gz/dc12199d582b75fdabfbac8c1d8e6bfc947cf53c"
   dependencies:
     "@babel/parser" "^7.19.4"
     "@joeychenofficial/alt-ergo-modified" "^2.4.0"
