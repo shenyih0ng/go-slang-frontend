@@ -29,9 +29,9 @@ function dynamicallyLoadScript(url) {
 function loadAllLibs() {
   const files = [
     // sound
-    '/externalLibs/sound/soundToneMatrix.js',
+    '/go-slang-frontend/externalLibs/sound/soundToneMatrix.js',
     // inspector
-    '/externalLibs/inspector/inspector.js'
+    '/go-slang-frontend/externalLibs/inspector/inspector.js'
   ];
 
   for (var i = 0; i < files.length; i++) {
