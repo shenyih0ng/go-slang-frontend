@@ -41,7 +41,7 @@ const ApplicationWrapper: React.FC = () => {
           courseId
         });
 
-    const r = createBrowserRouter(routerConfig);
+    const r = createBrowserRouter(routerConfig, { basename: '/go-slang-frontend' });
     dispatch(updateReactRouter(r));
 
     return r;
